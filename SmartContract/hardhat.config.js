@@ -1,3 +1,4 @@
+
 require ('@nomiclabs/hardhat-waffle');
 
 task("accounts","Prints the list of the accounts",async (taskArgs , hre )=>{
@@ -11,19 +12,12 @@ task("accounts","Prints the list of the accounts",async (taskArgs , hre )=>{
 module.exports = {
   solidity: "0.8.10",
 
-  defaultNetwork: "edutestnet",
-  settings: {
-    viaIR: true,
-    optimizer: {
-      enabled: true,
-      runs: 200,
-    },
-  },
+  defaultNetwork: "confluxTestnet",
   networks:{
     hardhat:{},
-    edutestnet: {
-      url: "https://rpc.open-campus-codex.gelato.digital",
-      chainId: 656476,
+    confluxTestnet: {
+      url: "https://evmtestnet.confluxrpc.com" || "",
+      chainId:71 ,
       accounts: ['5753e65f56865a161fbf41932a0d855139a4ce9dc20d82fb655bff393fc41702']
     },
   }

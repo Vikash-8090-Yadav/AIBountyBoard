@@ -39,10 +39,10 @@ graph TD
 
 # Smart Contract: 
 
-https://edu-chain-testnet.blockscout.com/address/0x2C8e10de89319BEdD4535fe668B659e6e1dF5593
+https://evmtestnet.confluxscan.org/address/0x578eedec0a5d17e2a4d1a7f14c42fd2efab06e10
 
 
-<img width="927" alt="image" src="https://github.com/user-attachments/assets/33749aeb-c8ba-49c4-be7d-0dd91b794f40" />
+
 
 
 ### Screenshots

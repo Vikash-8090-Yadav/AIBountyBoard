@@ -131,7 +131,7 @@ export default function CreateBountyForm() {
         if (err.message.includes("4001")) {
           setTransactionError("Transaction was rejected in your wallet")
         } else if (err.message.includes("insufficient funds")) {
-          setTransactionError("You don't have enough ETH to create this bounty")
+          setTransactionError("You don't have enough CFX to create this bounty")
         } else {
           setTransactionError(err.message || "Failed to create bounty. Please try again.")
         }
@@ -207,7 +207,7 @@ export default function CreateBountyForm() {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="reward">Reward Amount (ETH)</Label>
+            <Label htmlFor="reward">Reward Amount (CFX)</Label>
             <Input
               id="reward"
               type="number"

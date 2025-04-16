@@ -143,7 +143,7 @@ export default function SetRewardForm({
       <CardContent className="pt-6">
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-2">
-            <Label htmlFor="reward">Reward Amount (ETH)</Label>
+            <Label htmlFor="reward">Reward Amount (CFX)</Label>
             <Input
               id="reward"
               type="number"
@@ -157,7 +157,7 @@ export default function SetRewardForm({
               disabled={!isApproved}
             />
             <p className="text-sm text-muted-foreground">
-              Maximum reward: {bountyReward} ETH
+              Maximum reward: {bountyReward} CFX
             </p>
           </div>
 

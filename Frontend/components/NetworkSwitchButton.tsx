@@ -21,16 +21,16 @@ interface EthereumError extends Error {
 }
 
 const networks: Record<string, NetworkConfig> = {
-  edutestnet: {
-    chainId: `0x${Number(656476).toString(16)}`,
-    chainName: "edutestnet",
+  confluxTestnet: {
+    chainId: `0x${Number(71).toString(16)}`,
+    chainName: "Conflux eSpace Testnet",
     nativeCurrency: {
-      name: "ETH",
-      symbol: "ETH",
+      name: "CFX",
+      symbol: "CFX",
       decimals: 18,
     },
-    rpcUrls: ["https://rpc.open-campus-codex.gelato.digital"],
-    blockExplorerUrls: ['https://opencampus-codex.blockscout.com'],
+    rpcUrls: ["https://evmtestnet.confluxrpc.com"],
+    blockExplorerUrls: ['https://evmtestnet.confluxscan.io'],
   },
 };
 
@@ -49,9 +49,9 @@ export default function NetworkSwitchButton() {
           const currentChainId = `0x${network.chainId.toString(16)}`;
           
           console.log("Current chain ID:", currentChainId);
-          console.log("Target chain ID:", networks.edutestnet.chainId);
+          console.log("Target chain ID:", networks.confluxTestnet.chainId);
           
-          if (currentChainId === networks.edutestnet.chainId) {
+          if (currentChainId === networks.confluxTestnet.chainId) {
             console.log("On correct network, hiding button");
             setIsCorrectNetwork(true);
             setShowButton(false);
@@ -95,9 +95,10 @@ export default function NetworkSwitchButton() {
       // Get current chain ID
       const currentChainId = await window.ethereum.request({ method: 'eth_chainId' });
       console.log("Current chain ID:", currentChainId);
+      console.log("Target network config:", networks.confluxTestnet);
 
       // If already on the correct network, return
-      if (currentChainId === networks.edutestnet.chainId) {
+      if (currentChainId === networks.confluxTestnet.chainId) {
         console.log("Already on the correct network");
         setIsCorrectNetwork(true);
         setShowButton(false);
@@ -106,42 +107,45 @@ export default function NetworkSwitchButton() {
 
       try {
         // Try to switch to the network
+        console.log("Attempting to switch network...");
         await window.ethereum.request({
           method: 'wallet_switchEthereumChain',
-          params: [{ chainId: networks.edutestnet.chainId }],
+          params: [{ chainId: networks.confluxTestnet.chainId }],
         });
         console.log("Successfully switched networks");
         setIsCorrectNetwork(true);
         setShowButton(false);
       } catch (switchError: unknown) {
+        console.error("Switch error details:", switchError);
         // If the network hasn't been added to MetaMask
         if ((switchError as EthereumError).code === 4902) {
           try {
+            console.log("Network not found, attempting to add it...");
             // Add the network
             await window.ethereum.request({
               method: 'wallet_addEthereumChain',
-              params: [networks.edutestnet],
+              params: [networks.confluxTestnet],
             });
             console.log("Network added successfully");
             
             // Try switching again after adding
             await window.ethereum.request({
               method: 'wallet_switchEthereumChain',
-              params: [{ chainId: networks.edutestnet.chainId }],
+              params: [{ chainId: networks.confluxTestnet.chainId }],
             });
             console.log("Successfully switched after adding network");
             setIsCorrectNetwork(true);
             setShowButton(false);
           } catch (addError) {
-            console.error("Add network error:", addError);
-            throw new Error('Failed to add edutestnet to your wallet');
+            console.error("Add network error details:", addError);
+            throw new Error(`Failed to add Conflux eSpace Testnet to your wallet: ${(addError as Error).message}`);
           }
         } else {
-          throw new Error('Failed to switch to edutestnet network');
+          throw new Error(`Failed to switch to Conflux eSpace Testnet network: ${(switchError as Error).message}`);
         }
       }
     } catch (error) {
-      console.error("Network switch error:", error);
+      console.error("Network switch error details:", error);
       alert(error instanceof Error ? error.message : "Failed to switch network. Please try again.");
     } finally {
       setLoading(false);
@@ -163,7 +167,7 @@ export default function NetworkSwitchButton() {
             loading ? 'opacity-50 cursor-not-allowed' : ''
           }`}
         >
-          {loading ? 'Switching...' : 'Switch to edutestnet'}
+          {loading ? 'Switching...' : 'Switch to Conflux eSpace Testnet'}
         </button>
       </div>
     </div>

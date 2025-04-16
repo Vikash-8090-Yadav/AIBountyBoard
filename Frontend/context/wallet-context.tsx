@@ -30,16 +30,16 @@ const WalletContext = createContext<WalletContextType>({
 });
 
 const networks = {
-  edutestnet: {
-    chainId: `0x${Number(656476).toString(16)}`,
-    chainName: "edutestnet",
+  confluxTestnet: {
+    chainId: `0x${Number(71).toString(16)}`,
+    chainName: "Conflux eSpace Testnet",
     nativeCurrency: {
-      name: "ETH",
-      symbol: "ETH",
+      name: "CFX",
+      symbol: "CFX",
       decimals: 18,
     },
-    rpcUrls: ["https://rpc.open-campus-codex.gelato.digital"],
-    blockExplorerUrls: ['https://opencampus-codex.blockscout.com'],
+    rpcUrls: ["https://evmtestnet.confluxrpc.com"],
+    blockExplorerUrls: ['https://evmtestnet.confluxscan.io'],
   },
 };
 
@@ -138,7 +138,7 @@ export function WalletProvider({ children }: { children: ReactNode }) {
           setAddress(userAddress);
           setConnected(true);
           setChainId(network.chainId);
-          setIsCorrectNetwork(network.chainId === 656476);
+          setIsCorrectNetwork(network.chainId === 71);
 
           if (typeof window !== 'undefined') {
             localStorage.setItem("walletAddress", userAddress);

@@ -99,7 +99,7 @@ export default function VerificationPanel({
   const fetchSubmissions = useCallback(async () => {
     try {
       setLoading(true)
-      const rpcProvider = new ethers.providers.JsonRpcProvider('https://rpc.open-campus-codex.gelato.digital')
+      const rpcProvider = new ethers.providers.JsonRpcProvider('https://evmtestnet.confluxrpc.com')
       const contract = new ethers.Contract(communityAddress, abi.abi, rpcProvider)
 
       const submissionCount = await contract.getSubmissionCount(bountyId)

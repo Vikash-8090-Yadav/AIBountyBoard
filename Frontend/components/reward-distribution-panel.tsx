@@ -102,7 +102,7 @@ export default function RewardDistributionPanel({
                       <div>
                         <h4 className="font-medium">{dist.submitter}</h4>
                         <p className="text-sm text-muted-foreground">
-                          {dist.percentage}% ({dist.amount} tokens)
+                          {dist.percentage}% ({dist.amount} CFX)
                         </p>
                       </div>
                     </div>

@@ -202,12 +202,12 @@ export default function BountyDetails({ id }: BountyDetailsProps) {
     )
   }
 
-  if (chainId !== 656476) {
+  if (chainId !== 71) {
     return (
       <div className="flex flex-col items-center justify-center p-6 bg-amber-50 dark:bg-amber-900/20 rounded-lg">
         <h3 className="text-xl font-semibold mb-2 text-amber-700 dark:text-amber-400">Wrong Network</h3>
         <p className="text-sm text-amber-500 dark:text-amber-400/70 break-words max-w-md">Current network: {chainId || "Unknown"}</p>
-        <p className="text-sm text-amber-500 dark:text-amber-400/70">Please switch to edutestnet (Chain ID: 656476)</p>
+        <p className="text-sm text-amber-500 dark:text-amber-400/70">Please switch to Conflux eSpace Testnet (Chain ID: 71)</p>
       </div>
     )
   }
@@ -332,7 +332,7 @@ export default function BountyDetails({ id }: BountyDetailsProps) {
                     </div>
                     <div className="ml-4">
                       <p className="text-sm text-muted-foreground">Reward</p>
-                      <p className="font-medium text-lg">{bounty.rewardAmount} ETH</p>
+                      <p className="font-medium text-lg">{bounty.rewardAmount} CFX</p>
                     </div>
                   </div>
 
@@ -528,7 +528,7 @@ export default function BountyDetails({ id }: BountyDetailsProps) {
                                 <div className="space-y-2">
                                   <Input
                                     type="number"
-                                    placeholder="Enter reward amount in ETH"
+                                    placeholder="Enter reward amount in CFX"
                                     value={rewardAmount}
                                     onChange={(e) => setRewardAmount(e.target.value)}
                                   />
